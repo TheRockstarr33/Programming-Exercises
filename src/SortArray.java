@@ -38,14 +38,14 @@ public class SortArray {
         int amtCompleted = 0;
         success = true;
 
-        while (amtCompleted < arraySize-1) {
-                if (array[amtCompleted] > array[amtCompleted + 1]) {
-                    int temp = array[amtCompleted];
-                    array[amtCompleted] = array[amtCompleted + 1];
-                    array[amtCompleted + 1] = temp;
-                    success = false;
-                } else if (array[amtCompleted] < array[amtCompleted + 1]) amtCompleted++;
-                else if (array[amtCompleted] == array[amtCompleted + 1]) amtCompleted++;
+        while (amtCompleted < arraySize - 1) {
+            if (array[amtCompleted] > array[amtCompleted + 1]) {
+                int temp = array[amtCompleted];
+                array[amtCompleted] = array[amtCompleted + 1];
+                array[amtCompleted + 1] = temp;
+                success = false;
+            } else if (array[amtCompleted] < array[amtCompleted + 1]) amtCompleted++;
+            else if (array[amtCompleted] == array[amtCompleted + 1]) amtCompleted++;
         }
 
         if(success==false) runCalc(arraySize);
