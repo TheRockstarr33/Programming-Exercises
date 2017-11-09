@@ -14,5 +14,6 @@ public class Main {
         else if(firstOption==2) Prime.prime();
         else if(firstOption==3) Palindrome.palindrome();
         else if(firstOption==4) Power.isPowerOf2();
+        else if(firstOption==5) SortArray.sortIntArray();
     }
 }
