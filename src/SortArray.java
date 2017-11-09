@@ -4,6 +4,7 @@ import java.util.Random;
 public class SortArray {
 
     static int[] array;
+    static boolean success = false;
 
     public static void initArray(int arraySize) {
         Random rand = new Random();
@@ -17,16 +18,39 @@ public class SortArray {
         }
     }
 
-    public static void printArrayOutput(int arraySize) {
-        //System.out.println("This "+array[0]+", "+array[1]+", "+array[2]+", "+ array[3]+", "+array[4]+
-          //      ", "+ array[5]+", "+array[6]+" is your array.");
-        System.out.println("This ");
+    public static void printArrayOutput(int arraySize, int numberOfPrinting) {
+        System.out.print("This: ");
         int num = 0;
         while(num<arraySize) {
-            System.out.print(array[num]+", ");
-            num++;
+            if(num<arraySize-1) {
+                System.out.print(array[num] + ", ");
+                num++;
+            } else {
+                System.out.print(array[num]);
+                num++;
+            }
         }
-        System.out.println(" is your array.");
+        if(numberOfPrinting==1) System.out.println(" is your first array.");
+        else if(numberOfPrinting==2) System.out.println(" is your final array.");
+    }
+
+    public static boolean runCalc(int arraySize) {
+        int amtCompleted = 0;
+        success = true;
+
+        while (amtCompleted < arraySize-1) {
+                if (array[amtCompleted] > array[amtCompleted + 1]) {
+                    int temp = array[amtCompleted];
+                    array[amtCompleted] = array[amtCompleted + 1];
+                    array[amtCompleted + 1] = temp;
+                    success = false;
+                } else if (array[amtCompleted] < array[amtCompleted + 1]) amtCompleted++;
+                else if (array[amtCompleted] == array[amtCompleted + 1]) amtCompleted++;
+        }
+
+        if(success==false) runCalc(arraySize);
+
+        return success;
     }
 
     public static void sortIntArray() {
@@ -35,29 +59,14 @@ public class SortArray {
         int arraySize = Integer.parseInt(scanner.nextLine());
         initArray(arraySize);
 
-        printArrayOutput(arraySize);
+        printArrayOutput(arraySize,1);
 
-        int amtCompleted = 0;
+        //while(runCalc(arraySize)==false) {
+        //    runCalc(arraySize);
+        //}
 
-        boolean success = false;
+        runCalc(arraySize);
 
-        while(success = false) {
-            success = true;
-            while (amtCompleted < arraySize) {
-                if (array[amtCompleted] > array[amtCompleted + 1]) {
-                    int temp = array[amtCompleted];
-                    array[amtCompleted] = array[amtCompleted + 1];
-                    array[amtCompleted + 1] = temp;
-                    success = false;
-                }
-                else if (array[amtCompleted] < array[amtCompleted + 1])
-                {
-                    amtCompleted++;
-                }
-                else if (array[amtCompleted] == array[amtCompleted + 1]) amtCompleted++;
-            }
-            amtCompleted = 0;
-        }
-        if(success=true) printArrayOutput(arraySize);
+        if(success=true) printArrayOutput(arraySize, 2);
     }
 }
